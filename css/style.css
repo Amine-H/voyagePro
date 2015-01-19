@@ -1,0 +1,68 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+form table input,form table select
+{
+    width: 100%;
+}
+
+form label
+{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#content_wrapper
+{
+    height: 100%;
+}
+
+/*select all children except the ones that has .negate*/
+.big1 :not(.negate)
+{
+    width: 100%;
+    height: 100%;
+}
+
+#content_wrapper{
+    min-height: 550px;
+}
+
+.content-grids .grid img{
+    width:350px;
+}
+
+.content{
+    padding-top:50px;
+}
+
+#voyages{
+    padding-top:50px;
+}
+
+.content-grids .grid{
+    text-align: left;
+}
+
+.red{
+    background-color:red !important;
+}
+
+#signin-wrapper{
+    width:265px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#signin-container legend{
+    width:100%;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+}

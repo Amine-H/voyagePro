@@ -1,0 +1,9 @@
+<?php
+if(!isset($isIndex))die('');
+	@define("WEBSITE_NAME","voyagePro");
+	@define("VP_PWD_SALT","45s1");
+	@define(SMTP_HOST,'smtp.gmail.com');
+	@define(SMTP_PORT,'587');
+	@define(SMTP_USER,'jarchive.esto@gmail.com');
+	@define(SMTP_PWD,'hamzarachidabdessamadamine');
+?>

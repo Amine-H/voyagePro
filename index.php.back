@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<?php
+	$isIndex=true;
+	session_start();
+	require_once('inc/vars.php');
+	require_once('inc/functions.php');
+	require_once('inc/db.php');
+	$dbParams=DB::loadDbParams($mysqlC);
+	$routes = array('main',
+					'admin',
+					'admin_signin',
+					'admin_signin_',
+					'admin_signout',
+					'admin_forgot',
+					'addVoyage',
+					'addVoyage_',
+					'editVoyage',
+					'search',
+					'contact',
+					'signin',
+					'signin_',
+					'signup',
+					'signup_',
+					'signout',
+					'u',
+					'u_panel',
+					'u_panel_',
+					'error',
+					'reserver',
+					'voyage',
+					'voyages',
+					'maintenance');
+	$requestURI = explode('/',$_SERVER['REQUEST_URI']);
+	$scriptName = explode('/',$_SERVER['SCRIPT_NAME']);
+
+	for($i= 0;$i < sizeof($scriptName);$i++)
+	{
+		if($requestURI[$i] == $scriptName[$i])
+		{
+			unset($requestURI[$i]);
+		}
+	}
+	$requestURI = array_values($requestURI);
+	@$action = $requestURI[0];
+	$params = array_slice($requestURI,1);
+
+	if(empty($action))
+	{
+		$action = "main";
+	}
+?>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<title>VoyagePro</title>
+		<?php
+			if(Admin::isAdminPage($action))
+			{?>
+<script src="/js/admin-script.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/admin-style.css">
+			<?php }
+			else
+			{?>
+<script src="/js/script.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+			<?php }?>
+</head>
+<body>
+		<div id='content_wrapper'>
+			<div id='content'>
+			<?php
+
+/*//i don't remmember why this is here, but i find it completly useless somehow..we'll see
+			foreach ($routes as $route)
+			{
+				if(strpos($action,$route) === 0)
+				{
+					$action = $route;
+					break;
+				}
+			}*/
+
+			if(in_array($action,$routes))
+			{
+				if(isset($dbParams['isLive']) && $dbParams['isLive']==1)
+					require_once("./inc/".$action.".php");
+				else
+					require_once("./inc/maintenance.php");
+			}
+			else
+			{
+				require_once("./inc/error.php");
+			}
+			?>
+
+			</div>
+		</div>
+	</body>
+</html>
