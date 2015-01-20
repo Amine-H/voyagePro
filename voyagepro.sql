@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 21 Novembre 2014 à 22:28
+-- Généré le :  Mar 20 Janvier 2015 à 15:11
 -- Version du serveur :  5.6.16
 -- Version de PHP :  5.5.11
 
@@ -23,6 +23,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(15) COLLATE utf32_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf32_unicode_ci NOT NULL,
+  `password` varchar(35) COLLATE utf32_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`,`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
+(1, 'admin', 'admin@email.com', '318d2f5038f16c06f8f397186eb60940');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `cities`
 --
 
@@ -31,7 +53,16 @@ CREATE TABLE IF NOT EXISTS `cities` (
   `name` varchar(30) COLLATE utf32_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `cities`
+--
+
+INSERT INTO `cities` (`id`, `name`) VALUES
+(3, 'Casa'),
+(2, 'Oujda'),
+(1, 'Settat');
 
 -- --------------------------------------------------------
 
@@ -44,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `cities_voyages` (
   `idVoyage` int(11) NOT NULL,
   `idCity` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -77,8 +108,11 @@ CREATE TABLE IF NOT EXISTS `params` (
 --
 
 INSERT INTO `params` (`param`, `value`) VALUES
+('adresse', 'default adress'),
+('email', 'emaislfsdf@dfs.fr'),
 ('fbpage', 'facebook.com/theAMH'),
 ('isLive', '1'),
+('tel', 'tel'),
 ('twitter', 'twitter.com/Dijawker');
 
 -- --------------------------------------------------------
@@ -93,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `idVoyage` int(11) NOT NULL,
   `attended` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -112,13 +146,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`,`tel`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=2 ;
 
---
--- Contenu de la table `users`
---
-
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `tel`) VALUES
-(1, 'hakkou', 'amine', 'q4g@hotmail.fr', '6c8349cc7260ae62e3b1396831a8398f', '');
-
 -- --------------------------------------------------------
 
 --
@@ -129,11 +156,10 @@ CREATE TABLE IF NOT EXISTS `voyages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(30) COLLATE utf32_unicode_ci NOT NULL,
   `description` text COLLATE utf32_unicode_ci NOT NULL,
-  `cities` int(11) NOT NULL,
   `dateDepart` date NOT NULL,
   `dateRetour` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci AUTO_INCREMENT=2 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
